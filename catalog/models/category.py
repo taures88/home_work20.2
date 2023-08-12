@@ -13,7 +13,7 @@ NOT_NULLABLE = {
 
 class Category(models.Model):
     name = models.CharField(max_length=50, **NOT_NULLABLE)
-    desc = models.TextField(**NULLABLE)
+    desc = models.TextField(max_length=100, **NULLABLE)
 
     def __str__(self):
         return f'{self.name} : {self.desc}'

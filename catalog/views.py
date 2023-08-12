@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from catalog.models import Category
+from catalog.models import Category, Product
 
 
 def index(request):
@@ -9,6 +9,14 @@ def index(request):
         'title': 'Иномарка З/Ч'
     }
     return render(request, 'main/index.html', context)
+
+def product(request):
+    context = {
+        'object_list': Product.objects.all(),
+    }
+    return render(request, 'main/product.html', context)
+
+
 
 
 def contacts(request):
