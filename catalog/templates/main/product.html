@@ -10,6 +10,7 @@
             <img src="{{ object.image.url }}" style="width: 350px; height: 250px;">
             <div class="card-body">
                 <p class="card-text">{{ object.name }} </p>
+                <p class="card-text">{{object.desc|truncatewords:25}} </p>
                 <div class="d-flex justify-content-between align-items-center">
                 </div>
             </div>

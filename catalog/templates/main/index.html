@@ -11,7 +11,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <p>
-                                <a href="/product" class="btn btn-sm btn-outline-secondary">открыть</a>
+                                <a href="{% url 'catalog:product' object.pk %}" class="btn btn-sm btn-outline-secondary">открыть</a>
                             </p>
                         </div>
                     </div>

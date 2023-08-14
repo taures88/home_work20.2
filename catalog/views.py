@@ -10,9 +10,11 @@ def index(request):
     }
     return render(request, 'main/index.html', context)
 
-def product(request):
+def product(request, pk):
+    product_list = Category.objects.get(pk=pk)
     context = {
-        'object_list': Product.objects.all(),
+        'object_list': Product.objects.filter(category_id=pk),
+        'title': product_list.name
     }
     return render(request, 'main/product.html', context)
 
