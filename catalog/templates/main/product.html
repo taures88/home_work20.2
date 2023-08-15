@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% block content %}
+{% load image_tag %}
 <p>
     <a href="/" class="btn btn-sm btn-outline-secondary">назад</a>
 </p>
@@ -7,7 +8,7 @@
     {% for object in object_list %}
     <div class="col-md-4">
         <div class="card mb-4 box-shadow">
-            <img src="{{ object.image.url }}" style="width: 350px; height: 250px;">
+            <img src="{% media_path object.image %}" />
             <div class="card-body">
                 <p class="card-text">{{ object.name }} </p>
                 <p class="card-text">{{object.desc|truncatewords:25}} </p>
