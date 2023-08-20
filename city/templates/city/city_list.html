@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+{% load image_tag %}
+    <a class="btn btn-outline-primary" href="{% url 'city:create' %}">Добавить город</a>
+    <div class="row">
+        {% for object in object_list %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img src="{% media_path object.img %}" class="card-img-top" alt=""/>
+                <div class="card-body">
+                    <p class="card-text">{{ object.title }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <p>
+                                <a href="{% url 'city:view' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{% url 'city:edit' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                <a href="{% url 'city:delete' object.pk %}" type="button" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

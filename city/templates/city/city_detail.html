@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    {% load image_tag %}
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    {{ object.title }} ({{ object.slug }})
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>{{ object.body }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="card-footer">
+                                Прочитано {{ object.views_count }} раз.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <img src="{% media_path object.img %}" class="card-img-top" alt="city"/>
+                    </div>
+                </div>
+                <a class="btn btn-outline-primary" href="{% url 'city:list' %}">назад</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
