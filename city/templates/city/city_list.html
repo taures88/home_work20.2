@@ -2,7 +2,9 @@
 {% block content %}
 {% load static %}
 {% load image_tag %}
+<div class="col-12 mb-4">
     <a class="btn btn-outline-primary" href="{% url 'city:create' %}">Добавить город</a>
+</div>
     <div class="row">
         {% for object in object_list %}
         <div class="col-md-4">

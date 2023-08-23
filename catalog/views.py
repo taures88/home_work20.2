@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
+from catalog.forms import ProductForm
 from catalog.models import Category, Product
 
 
@@ -52,3 +54,26 @@ def contacts(request):
         message = request.POST.get('message')
         print(f'{name} ({phone}) {message}')
     return render(request, 'main/contacts.html')
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'main/product_form.html'
+    success_url = reverse_lazy('catalog:category')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'main/product_form.html'
+    success_url = reverse_lazy('catalog:category')
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'main/product_confirm_delete.html'
+    success_url = reverse_lazy('catalog:category')
+
+
