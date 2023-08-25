@@ -5,7 +5,15 @@ from catalog.models.products import Product
 from catalog.models.version import Version
 
 
-class ProductForm(forms.ModelForm):
+class StyleForm:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field_name != 'sign_current_version':
+                field.widget.attrs['class'] = 'form-control'
+
+
+class ProductForm(StyleForm, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category_id'].empty_label = 'Категория не выбрана'
@@ -33,7 +41,7 @@ class ProductForm(forms.ModelForm):
         return desc
 
 
-class VersionForm(forms.Form):
+class VersionForm(StyleForm, forms.ModelForm):
     class Meta:
         model = Version
         fields = '__all__'
