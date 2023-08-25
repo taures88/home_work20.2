@@ -1,7 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from catalog.models import Product
+from catalog.models.products import Product
+from catalog.models.version import Version
 
 
 class ProductForm(forms.ModelForm):
@@ -30,3 +31,9 @@ class ProductForm(forms.ModelForm):
             if desc in tag:
                 raise ValidationError('Недопустимое значение')
         return desc
+
+
+class VersionForm(forms.Form):
+    class Meta:
+        model = Version
+        fields = '__all__'
