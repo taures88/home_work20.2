@@ -94,6 +94,5 @@ class ProductUpdateView(UpdateView):
 
 class ProductDeleteView(DeleteView):
     model = Product
-    form_class = ProductForm
     template_name = 'main/product_confirm_delete.html'
     success_url = reverse_lazy('catalog:category')

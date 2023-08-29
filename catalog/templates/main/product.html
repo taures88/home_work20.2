@@ -1,27 +1,28 @@
 {% extends 'main/base.html' %}
-{% block content %}
 {% load image_tag %}
+{% block content %}
+
 <p>
     <a href="{% url 'catalog:category' %}" class="btn btn-outline-secondary">назад</a>
 </p>
+<p>
+    <a href="{% url 'catalog:product_create' %}" class="btn btn-outline-primary">Добавить продукт</a>
+</p>
 <div class="row">
-    <div class="col-12 mb-3">
-        <a href="{% url 'catalog:product_create' %}" class="btn btn-outline-primary">Добавить продукт</a>
-    </div>
     {% for object in object_list %}
     <div class="col-md-4 mb-3">
         <div class="card mb-4 box-shadow">
-            <img src="{% media_path object.image %}" />
-            <div class="card-body">
-                <p class="card-text">{{ object.name }} </p>
-                <p class="card-text">{{object.desc|truncatewords:25}} </p>
-                <p class="card-text">{{object.price|truncatewords:25}} руб. </p>
-                <span class="text-muted">{{object.created_at}}</span>
-                <div class="d-flex justify-content-between align-items-center">
+            <img src="{% media_path object.image %}" class="card-img-top" alt=""/>
+                <div class="card-body">
+                    <p class="card-text">{{ object.name }} </p>
+                    <p class="card-text">{{object.desc|truncatewords:25}} </p>
+                    <p class="card-text">{{object.price|truncatewords:25}} руб. </p>
+                    <span class="text-muted">{{object.created_at}}</span>
+                    <div class="d-flex justify-content-between align-items-center">
+                    </div>
+                    <a href="{% url 'catalog:product_update' object.pk %}" class="btn btn-outline-success">Редактировать</a>
+                    <a href="{% url 'catalog:product_delete' object.pk %}" type="button" class="btn btn-outline-danger">Delete</a>
                 </div>
-                <a href="{% url 'catalog:product_update' object.pk %}" class="btn btn-outline-success">Редактировать</a>
-                <a href="{% url 'catalog:product_delete' object.pk %}" type="button" class="btn btn-outline-danger">Delete</a>
-            </div>
         </div>
     </div>
     {% endfor %}
