@@ -1,6 +1,6 @@
 ﻿from django.db import models
 
-from catalog.models import Product
+from catalog.models.products import Product
 
 NULLABLE = {
     'null': True,
