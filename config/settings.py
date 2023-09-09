@@ -141,3 +141,11 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'taures_88@mail.ru'
 EMAIL_HOST_PASSWORD = 'Ni8rgFwxnfQb5TASr8FG'
 EMAIL_USE_SSL = True
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": os.path.join(BASE_DIR, 'config_cache'),
+    }
+}

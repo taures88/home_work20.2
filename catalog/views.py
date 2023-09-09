@@ -1,7 +1,8 @@
+from django.db.models import Q
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Category, Product
@@ -29,11 +30,16 @@ class CategoryListView(ListView):
 #     }
 #     return render(request, 'main/product.html', context)
 
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'main/product_detail.html'
+
+
 
 class ProductListView(ListView):
     model = Product
     template_name = 'main/product.html'
-
+    success_url = reverse_lazy('catalog:category')
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(category_id=self.kwargs.get('pk'))
@@ -88,7 +94,6 @@ class ProductUpdateView(UpdateView):
             formset.instance = self.object
             formset.save()
         return super().form_valid(form)
-
 
 class ProductDeleteView(DeleteView):
     model = Product

@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% load static %}
+{% load image_tag %}
+<div class="row">
+    <div class="col-md-4">
+        <h2>{{product.name}}</h2>
+        <img src="{% media_path object.image %}" alt="{{product.name}}" class="card-img-top" />
+        <p>Категория {{product.category_id}}</p>
+        <p>Описание: {{product.desc}}</p>
+        <p>Цена: {{product.price}} руб.</p>
+        <p>Клиент: {{ object.client|default:'не забронировано'}}</p>
+        <a href="{% url 'catalog:category' %}" class="btn btn-success">назад</a>
+    </div>
+</div>
+{% endblock %}
